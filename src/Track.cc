@@ -1,0 +1,107 @@
+
+// ----------------------------------------------------------------------------
+//  $Id: Track.cc 9821 2014-04-25 18:59:18Z gomez $
+//
+//  Author:  <paola.ferrario@ific.uv.es>
+//  Created: 14 Feb 2013
+//  
+//  Copyright (c) 2013 NEXT Collaboration
+// ---------------------------------------------------------------------------- 
+
+#include "Track.h"
+#include "Particle.h"
+
+#include <iostream>
+#include <iomanip>
+
+ClassImp(irene::Track)
+
+namespace irene {
+
+  Track::Track()
+  {
+    // _id = 0;
+    //  _track_length = 0;
+    _particle = 0;
+    _detector_name = "unknown";
+    _hits.clear();
+  }
+
+  Track::Track(std::string& detector)
+  {
+    _detector_name = detector;
+    // _id = 0;
+    //   _track_length = 0;
+    _particle = 0;
+    _hits.clear();
+  }
+
+  Track::~Track()
+  {  
+  }
+
+  void Track::AddHit(double x, double y, double z, 
+		     double t, double energy)
+  {
+    std::pair<TLorentzVector,double> newhit;
+    newhit.first.SetXYZT(x,y,z,t);
+    newhit.second = energy;
+    
+    _hits.push_back(newhit);
+    
+  }
+
+
+  const std::vector<std::pair<TLorentzVector,double> >& Track::GetHits() const 
+  {
+    return _hits;
+  }
+
+  std::vector<std::pair<TLorentzVector,double> >& Track::GetHits() 
+  {
+    return _hits;
+  }
+
+  void Track::SetParticle(Particle* particle) 
+  {
+    _particle = particle;
+  }
+
+  const Particle* Track::GetParticle() const
+  {
+    if (!_particle.GetObject()) {
+      std::cerr << "[ERROR: irene::Track::GetParticle()]:" 
+  		<< " the track has no particle associated!" << std::endl;
+    }
+    return dynamic_cast<Particle*> (_particle.GetObject());
+  }
+
+  Particle* Track::GetParticle()
+  {
+    if (!_particle.GetObject()) {
+      std::cerr << "[ERROR: irene::Track::GetParticle()]:" 
+		<< " the track has no particle associated!" << std::endl;
+    }
+    return dynamic_cast<Particle*> (_particle.GetObject());
+  }
+
+  void Track::IInfo(std::ostream& s) const
+  {
+    for (int i=0; i<_hits.size(); ++i) {
+      std::pair<TLorentzVector,double> myhit = _hits[i];
+      s  << " x (mm)    y (mm)    z (mm)    " << std::endl;
+      s << std::setw(5) << myhit.first.X() <<"     " 
+	<< std::setw(5) << myhit.first.Y() <<"     " 
+	<< std::setw(5) << myhit.first.Z() << std::endl;
+      s << "deposited energy = "<< myhit.second << std::endl;
+      s << "time = "<< myhit.first.T() << std::endl;
+      s << "--------------------------------------" << std::endl;
+    }
+  }
+
+}  // namespace irene
+
+std::ostream& operator << (std::ostream& s, const irene::Track& tr) {
+  tr.IInfo(s);
+  return s; 
+}
