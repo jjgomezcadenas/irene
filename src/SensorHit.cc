@@ -47,7 +47,7 @@ namespace irene {
     _waveform.push_back(sample);
   } 
   
-  void SensorHit::Info(std::ostream& s) const
+  void SensorHit::AInfo(std::ostream& s) const
   {
     //  s << std::endl;    
     s << this->GetDetectorName() << " hit, ID = " << this->GetID()  
@@ -62,6 +62,6 @@ namespace irene {
 } // namespace irene
 
 std::ostream& operator << (std::ostream& s, const irene::SensorHit& lh) {
-  lh.Info(s);
+  lh.AInfo(s);
   return s; 
 }

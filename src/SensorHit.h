@@ -56,7 +56,7 @@ namespace irene {
     void SetDetectorName(std::string);
     const std::string& GetDetectorName() const;
 
-    void Info(std::ostream& s) const;
+    void AInfo(std::ostream& s) const;
     
 
     ClassDef(SensorHit,1);
