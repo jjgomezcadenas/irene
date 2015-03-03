@@ -9,8 +9,8 @@
 ///  Copyright (c) 2013 NEXT Collaboration
 // ----------------------------------------------------------------------------
 
-#ifndef TRACK_H_
-#define TRACK_H_
+#ifndef ITRACK_H_
+#define ITRACK_H_
 
 #include <TObject.h>
 #include <TLorentzVector.h>

@@ -9,8 +9,8 @@
 ///  Copyright (c) 2013 NEXT Collaboration
 // ----------------------------------------------------------------------------
 
-#ifndef UNITS_
-#define UNITS_
+#ifndef IUNITS_
+#define IUNITS_
 
 namespace irene { 
     

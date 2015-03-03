@@ -9,8 +9,8 @@
 ///  Copyright (c) 2013 NEXT Collaboration
 // ----------------------------------------------------------------------------
 
-#ifndef EVENT_H_
-#define EVENT_H_
+#ifndef IEVENT_H_
+#define IEVENT_H_
 
 #include <iostream>
 #include <TObject.h>

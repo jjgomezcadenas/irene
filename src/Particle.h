@@ -9,8 +9,8 @@
 ///  Copyright (c) 2013 NEXT Collaboration
 // ----------------------------------------------------------------------------
 
-#ifndef PARTICLE_H_
-#define PARTICLE_H_
+#ifndef IPARTICLE_H_
+#define IPARTICLE_H_
 
 #include <string>
 #include <map>
